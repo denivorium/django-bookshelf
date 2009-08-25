@@ -1,6 +1,6 @@
 # Create your views here.
 
-from django import newforms as forms
+from django import forms
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -19,7 +19,7 @@ def books(request):
         q[str(id_type.lower())] = id_type
         if list(models.Book.objects.filter(**q)):
             raise ValueError("Book already exists")
-            
+
         book = models.lookup_book(book_id, id_type)
         if book:
             book.save()
@@ -48,7 +48,5 @@ def books(request):
         good_used_price = sum(b.used_price for b in books if not b.worthless)
 
         return render_to_response('books.html', locals())
-
-    
 
 
