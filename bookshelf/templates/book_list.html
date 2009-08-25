@@ -1,0 +1,24 @@
+<div class="book span-24 last">
+  <div class="book-image span-2">
+    <img src="{{book.image}}" width="{{book.image_width}}" height="{{book.image_height}}"/>
+    <div class="book-detail span-last"><a href="{{book.detail_page}}">details</a></div>
+  </div>
+  <div class="span-22 last">
+    <div class="book-title span-22 last"><strong>{{book.title}}</strong></div>
+    <div class="book-author span-22 last">by {{book.authors}}</div>
+    
+    <div class="span-22 last"><hr/></div>
+    <div class="price-label span-3" align="right">List Price</div>
+    <div class="book-price list-price span-1">${{book.list_price}}</div>
+    
+    <div class="price-label span-3" align="right">New Price</div>
+    <div class="book-price new-price span-1 append-12 last">${{book.new_price}}</div>
+
+    <div class="price-label span-3" align="right">Amazon Price</div>
+    <div class="book-price used-price span-1">${{book.amazon_price}}</div>
+
+    <div class="price-label span-3" align="right">Used Price</div>
+    <div class="book-price new-price span-1 append-14 last">${{book.used_price}}</div>
+  </div>
+  <div class="span-24 last">&nbsp;<hr/></div>
+</div>

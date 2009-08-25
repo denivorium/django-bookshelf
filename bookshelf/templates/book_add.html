@@ -1,0 +1,38 @@
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+  function add_book() {
+    $.post("/bookshelf/", { book_id : $("#id_book_id")[0].value, id_type : $("#id_id_type")[0].value}, append_book_html);
+    return false;
+  }
+
+  function append_book_html(content) {
+    $("book_list").prepend(content);
+  }
+
+  $(document).ready( function() {
+    $('#id_book_id').focus();
+  });
+</script>
+{% endblock %}
+
+<div class="span-10">
+<form id="add_book_form" action="/bookshelf/" method="POST">
+  <input type="text" name="book_id" id="id_book_id" value="{{previous_book_id}}"/>
+  <select name="id_type" id="id_id_type">
+    <option value="ISBN">ISBN</option>
+    <option value="EAN">EAN</option>
+    <option value="UPC">UPC</option>
+  </select>
+  <input type="submit" value="Add"/>
+</form>
+</div>
+<div class="span-14 last message" align="right">
+{% if message %}
+<span id="message" style="display:none; text-align:bottom; color:red"><strong>{{ message }}</strong></span>
+<script type="text/javascript">
+  $("#message").show("slow")
+</script>
+{% endif %}
+</div>
+<hr/>

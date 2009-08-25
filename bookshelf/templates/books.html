@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block pageheader %}
+{# <div class="span-12 prepend-6 append-6 last" align="center"><h3>Cosmin's Books</h3></div> #}
+{% endblock %}
+
+{% block content %}
+{% if user_can_add %}
+{% include "book_add.html" %}
+{% else %}
+<div class="span-24 last"><a href="/accounts/login/">Login</a> to modify books<hr/></div>
+{% endif %}
+<div class="span-24 last">
+  <div class="span-2"><strong>Total</strong></div>
+  <div class="price-label span-3" align="right">List Price</div>
+  <div class="book-price list-price span-1">${{total_list_price}}</div>
+
+  <div class="price-label span-3" align="right">Amazon Price</div>
+  <div class="book-price used-price span-1">${{total_amazon_price}}</div>
+  
+  <div class="price-label span-3" align="right">New Price</div>
+  <div class="book-price new-price span-1">${{total_new_price}}</div>
+    
+  <div class="price-label span-3" align="right">Used Price</div>
+  <div class="book-price new-price span-1 append-6 last">${{total_used_price}}</div>
+
+  <div class="span-2"><strong>Subset</strong></div>
+  <div class="price-label span-3" align="right">&nbsp;</div>
+  <div class="book-price list-price span-1">${{good_list_price}}</div>
+
+  <div class="price-label span-3" align="right">&nbsp;</div>
+  <div class="book-price used-price span-1">${{good_amazon_price}}</div>
+  
+  <div class="price-label span-3" align="right">&nbsp;</div>
+  <div class="book-price new-price span-1">${{good_new_price}}</div>
+    
+  <div class="price-label span-3" align="right">&nbsp;</div>
+  <div class="book-price new-price span-1 append-6 last">${{good_used_price}}</div>
+  <div class="span-24 last"><hr/></div>
+</div>
+
+<div id="book_list span-24 last">
+
+{% for book in books %}
+{% include "book_list.html" %}
+{% endfor %}
+</div>
+{% endblock %}

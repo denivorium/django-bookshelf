@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Example:
     # (r'^project/', include('project.foo.urls')),
+    (r'^$', include('bookshelf.urls')),
 
     (r'^admin/', include(admin.site.urls)),
 )
