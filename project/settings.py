@@ -87,6 +87,10 @@ INSTALLED_APPS = (
     'bookshelf',
 )
 
+AWS_ACCESS_KEY = "YOU MUST SUPPLY THIS IN settings_local.py"
+AWS_SECRET_KEY = "YOU MUST SUPPLY THIS IN settings_local.py"
+AWS_ECS_VERSION = "2008-04-07"
+
 try:
     from settings_local import *
 except ImportError, ie:
