@@ -23,10 +23,10 @@ def books(request):
         book = models.lookup_book(book_id, id_type)
         if book:
             book.save()
-            return HttpResponseRedirect( '/bookshelf/')
+            return HttpResponseRedirect( '/')
         #return render_to_response('book_list.html', {"book" : book})
         else:
-            return HttpResponseRedirect( '/bookshelf/?failure=1&book_id=%s&id_type=%s' % (book_id, id_type))
+            return HttpResponseRedirect( '/?failure=1&book_id=%s&id_type=%s' % (book_id, id_type))
     else:
         books = models.Book.objects.all().order_by('-created')
 
@@ -48,5 +48,3 @@ def books(request):
         good_used_price = sum(b.used_price for b in books if not b.worthless)
 
         return render_to_response('books.html', locals())
-
-
