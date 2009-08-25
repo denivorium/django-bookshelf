@@ -1,0 +1,9 @@
+import os
+
+ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+DEBUG = True
+MEDIA_SERVE = True
+
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = os.path.join(ROOT, 'development.db')
