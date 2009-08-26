@@ -4,15 +4,15 @@
     {% block javascripts %}
     
     {% if settings.DEBUG %}
-    <script type="text/javascript" src="{{ settings.MEDIA_URL }}js/jquery/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery-1.3.2.js"></script>
     {% else %}
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     {% endif %}
 
     {% endblock %}
     {% block stylesheets %}
-    <link rel="stylesheet" href="{{ settings.MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="{{ settings.MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print">
     {% endblock %}
     {% block extra_head %} {% endblock %}
   </head>

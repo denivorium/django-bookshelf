@@ -4,6 +4,7 @@ from django import forms
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
 import models
@@ -46,5 +47,7 @@ def books(request):
         good_amazon_price = sum(b.amazon_price for b in books if not b.worthless)
         good_new_price = sum(b.new_price for b in books if not b.worthless)
         good_used_price = sum(b.used_price for b in books if not b.worthless)
+
+        MEDIA_URL = settings.MEDIA_URL
 
         return render_to_response('books.html', locals())
