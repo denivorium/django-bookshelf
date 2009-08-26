@@ -9,11 +9,18 @@ from django.conf import settings
 ECS_URL = "http://ecs.amazonaws.com/onca/xml"
 
 def encode_query(querydict):
-    return urllib.urlencode(querydict).replace('+', '%20').replace('%7E', '~')
+    params = [(k,v) for k,v in querydict.items()]
+    params.sort()
+    return urllib.urlencode(params).replace('+', '%20').replace('%7E', '~')
+
+def hmac_sha(tosign, key=settings.AWS_SECRET_KEY):
+    return base64.encodestring(hmac.new(key, tosign, hashlib.sha256).digest())[:-1]
+
+def get_string_to_sign(httpverb, hostname, requesturi, queryparams):
+    return '\n'.join((httpverb, hostname, requesturi, encode_query(queryparams)))
 
 def sign_request(httpverb, hostname, requesturi, queryparams):
-    tosign = '\n'.join((httpverb, hostname, requesturi, encode_query(queryparams)))
-    return base64.encodestring(hmac.new(settings.AWS_SECRET_KEY, tosign, hashlib.sha256).digest())[:-1]
+    return hmac_sha(get_string_to_sign(httpverb, hostname, requesturi, queryparams))
 
 def lookup(item_id, id_type):
     httpverb = 'GET'
